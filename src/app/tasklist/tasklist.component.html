@@ -1,0 +1,84 @@
+<div class="col-md-9">
+  <h4 class="text-left">Search Task</h4>
+  <form>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label for="taskName">Task</label>
+              <input [(ngModel)]="taskToSearch.taskName" name="taskName" class="form-control" id="taskName" size="30">
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="parentTaskName">Parent Task</label>
+              <input [(ngModel)]="taskToSearch.parentTaskName" name="parentTaskName" class="form-control" id="parentTaskName" size="30">
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="priorityFrom">Priority From</label>
+              <input name="priorityFrom" class="form-control" id="priorityFrom" size="5" #priorityFrom>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="priorityTo">Priority To</label>
+              <input name="priorityTo" class="form-control" id="priorityTo" size="5" #priorityTo>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label for="startDate">Start Date</label>
+              <input [(ngModel)]="taskToSearch.startDate" name="startDate" class="form-control" id="startDate" size="10">
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="endDate">End Date</label>
+              <input [(ngModel)]="taskToSearch.endDate" name="endDate" class="form-control" id="endDate" size="10">
+            </div>
+          </td>
+          <td colspan="2">&nbsp;
+            <div class="form-group">
+              <label for="searchTaskBtn">&nbsp;</label>
+              <button class="btn btn-primary" (click)="searchTask(priorityFrom.value, priorityTo.value)">Search</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <h4 class="text-left">Task List</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Parent</th>
+        <th>Priority</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{task.taskName}}</td>
+        <td>{{task.parentTask?.parentTaskName}}</td>
+        <td>{{task.priority}}</td>
+        <td>{{task.startDate | date:"dd-MMM-yyyy"}}</td>
+        <td>{{task.endDate | date:"dd-MMM-yyyy"}}</td>
+        <td>
+          <a [routerLink]="['/edit-task', task.taskId]" class="btn btn-primary">Edit</a>
+          <!--<button class="btn btn-primary" (click)="editTask(task)">Edit</button>-->
+          &nbsp;
+          <button class="btn btn-primary" (click)="endTask(task)">End Task</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -1,0 +1,38 @@
+<div class="col-md-6">
+  <h4 class="text-left">Create Task</h4>
+  <form>
+    <div class="form-group">
+      <label for="taskName">Task Name</label>
+      <input [(ngModel)]="task.taskName" name="taskName" class="form-control" id="taskName">
+    </div>
+
+    <div class="form-group">
+      <label for="parentTaskName">Parent Task</label>
+      <select [(ngModel)]="task.parentTaskId" name="parentTaskId" class="form-control"
+        id="parentTaskId">
+
+        <option *ngFor="let item of parentTaskList" value="{{item.parentTaskId}}">
+          {{item.parentTaskName}}
+        </option>
+
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="priority">Priority</label>
+      <input [(ngModel)]="task.priority" placeholder="Enter Priority:1-30" name="priority" class="form-control" id="priority">
+    </div>
+
+    <div class="form-group">
+      <label for="startDate">Start Date</label>
+      <input [(ngModel)]="task.startDate" placeholder="yyyy-mm-dd" name="startDate" class="form-control" id="startDate">
+    </div>
+
+    <div class="form-group">
+      <label for="endDate">End Date</label>
+      <input [(ngModel)]="task.endDate" placeholder="yyyy-mm-dd" name="endDate" class="form-control" id="endDate">
+    </div>
+
+    <button class="btn btn-primary" (click)="createTask()">Create</button>
+  </form>
+</div>
